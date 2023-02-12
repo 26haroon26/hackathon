@@ -103,7 +103,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 1, bgcolor: "green" }}
             >
-              Sign Up
+              Sign In
             </Button>
             <Typography
               component="p"

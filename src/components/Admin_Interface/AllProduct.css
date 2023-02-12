@@ -1,0 +1,41 @@
+.main {
+  height: 90vh;
+  background-color: gainsboro;
+}
+
+.heading {
+  color: blue;
+  font-size: 15px;
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 90vh;
+}
+
+.product {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid grey;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  padding: 20px;
+  height: 50px;
+}
+
+.productimage {
+  width: 50px;
+}
+
+.text {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.text p {
+  font-size: 15px;
+}
