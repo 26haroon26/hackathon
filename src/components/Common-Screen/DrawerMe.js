@@ -151,6 +151,18 @@ const [loadProduct, setLoadProduct] = useState(false)
              <ListItemText primary="AllProduct" />
            </ListItemButton>
          </ListItem></LinkPage> 
+         <LinkPage
+           onClick={()=>{setIsOpen(false)}}
+          to="/AddCategory">
+         <ListItem disablePadding>
+           <ListItemButton component="a" >
+             <ListItemIcon>
+              <Group />
+             </ListItemIcon>
+             <ListItemText primary="AddCategory" />
+           </ListItemButton>
+         </ListItem></LinkPage> 
+         
          
          <Divider/>
          <ListItem  onClick={LogoutHandle} disablePadding>

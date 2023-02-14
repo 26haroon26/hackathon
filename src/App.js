@@ -5,6 +5,7 @@ import { Routes, Route, Link, Navigate } from "react-router-dom";
 // import loaderImg from "./img/loader.webp";
 import Home from "./components/home";
 import SignIn from "./components/Common-Screen/signin";
+import AddCategory from "./components/Admin_Interface/AddCategory";
 import AddProduct from "./components/Admin_Interface/AddProduct";
 import AllProduct from "./components/Admin_Interface/AllProduct";
 import DrawerMe from "./components/Common-Screen/DrawerMe";
@@ -50,7 +51,7 @@ function App() {
         });
       } catch (error) {
         dispatch({
-          type: "USER_LOGIN",
+          type: "USER_LOGOUT",
         });
         console.log("axios error: ", error);
       }
@@ -61,34 +62,34 @@ function App() {
 
   // axios intercaption js se hr request me withCredentials true ho jae ga sb me alg alg nahi lgana pare ga
 
-  // useEffect(() => {
-  //   // request me interceptors add kya he
-  //   // jo ke request send hone se pehle add ho ga
-  //   axios.interceptors.request.use(
-  //     (config) => {
-  //       config.withCredentials = true;
-  //       return config;
-  //     },
-  //     (error) => {
-  //       return Promise.reject(error);
-  //     }
-  //   );
-  //   // respone me interceptors add kya he
-  //   // jo ke response aane ke bad add ho ga
-  //   axios.interceptors.response.use(
-  //     (response) => {
-  //       return response;
-  //     },
-  //     (error) => {
-  //       if (error.response.status === 401) {
-  //         dispatch({
-  //           type: "USER_LOGOUT",
-  //         });
-  //       }
-  //       return Promise.reject(error);
-  //     }
-  //   );
-  // }, []);
+  useEffect(() => {
+    // request me interceptors add kya he
+    // jo ke request send hone se pehle add ho ga
+    axios.interceptors.request.use(
+      (config) => {
+        config.withCredentials = true;
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      }
+    );
+    // respone me interceptors add kya he
+    // jo ke response aane ke bad add ho ga
+    axios.interceptors.response.use(
+      (response) => {
+        return response;
+      },
+      (error) => {
+        if (error.response.status === 401) {
+          dispatch({
+            type: "USER_LOGOUT",
+          });
+        }
+        return Promise.reject(error);
+      }
+    );
+  }, []);
 
   // useEffect(() => {
 
@@ -156,8 +157,9 @@ function App() {
           
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/" element={<AddProduct />} />
-          <Route path="/AllProduct" element={<AllProduct />} />
-          <Route path="*" element={<Navigate to="/" replace={true} />} />
+          <Route path="AddCategory" element={<AddCategory />} />
+          <Route path="AllProduct" element={<AllProduct />} />
+                    <Route path="*" element={<Navigate to="/" replace={true} />} />
         </Routes>
       ) : null}
 

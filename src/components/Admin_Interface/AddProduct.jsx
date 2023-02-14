@@ -5,20 +5,21 @@ import { useContext } from "react";
 import { GlobalContext } from "../../context/Context";
 function AddProduct() {
   let { state, dispatch } = useContext(GlobalContext);
-const [file,setfile]=useState()
+  const [file,setfile]=useState()
   const Productadded = async (e) => {
     e.preventDefault();
 
     let productImage = document.getElementById("image");
-    let productName = document.getElementById("name");
-    let productCategory = document.getElementById("category");
-    let productDec = document.getElementById("descr");
+    let productName = document.getElementById("itemName");
+    let productCategory = document.getElementById("itemCategory");
+    let productDec = document.getElementById("ProductDesc");
     let unitName = document.getElementById("unitname");
-    let unitPrice = document.getElementById("unitprice");
+    let unitPrice = document.getElementById("unitPrice");
     productImage = productImage.files[0];
+    console.log(productImage);
     let formData = new FormData();
-
-    formData.append("productImage", productImage.files[0]);
+// console.log(file);
+    formData.append("photo",productImage);
     formData.append("productName", productName.value);
     formData.append("productCategory", productCategory.value);
     formData.append("productDec", productDec.value);
@@ -30,9 +31,10 @@ const [file,setfile]=useState()
       url: `${state.baseUrl}/product`,
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
+      withCredentials:true,
     })
       .then((res) => {
-        // setistrue(!istrue);
+       console.log(res);
       })
       .catch((err) => {
         console.log(err.response.data.message);
@@ -43,9 +45,7 @@ const [file,setfile]=useState()
       <h4 className="heading">Add new item</h4>
       <form className="addProductForm" onSubmit={Productadded}>
         {/* <div className="productImageDiv"> */}
-        <input type="file" className="productImage" id="image" required  onChange={(e)=>{
-          setfile(e.currentTarget.value)
-        }}/>
+        <input type="file" className="productImage" id="image" required  />
         {/* </div> */}
         <input type="text" className="itemName" id="itemName" required />
         <select name="" id="itemCategory" className="itemCategory" required>
